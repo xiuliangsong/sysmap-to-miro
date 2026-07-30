@@ -66,11 +66,17 @@ to re-render the same map in any set.
 
 archify draws no icons itself — the icon sets live in this skill's render step.
 
-## Example
+## Examples
 
-[`examples/etl-architecture.architecture.json`](examples/etl-architecture.architecture.json)
-is a real archify IR; running the converter produces the board plan the skill
-feeds to Miro.
+Two worked, invented system maps in [`examples/`](examples/) —
+[`url-shortener`](examples/url-shortener.architecture.json) and
+[`ecommerce-checkout`](examples/ecommerce-checkout.architecture.json) — each with
+its input IR and the board plan the converter produces. Walkthrough in
+[examples/README.md](examples/README.md).
+
+```bash
+node bin/ir-to-miro.mjs examples/url-shortener.architecture.json --iconset aws
+```
 
 ## License
 
