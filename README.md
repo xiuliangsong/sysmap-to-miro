@@ -79,18 +79,22 @@ archify draws no icons itself — the icon sets live in this skill's render step
 
 ## Examples
 
-Three worked, invented system maps in [`examples/`](examples/):
+Four worked, invented system maps in [`examples/`](examples/):
 [`url-shortener`](examples/url-shortener.architecture.json) (AWS),
 [`ecommerce-checkout`](examples/ecommerce-checkout.architecture.json) (AWS), and its
-Google Cloud twin
-[`ecommerce-checkout-gcp`](examples/ecommerce-checkout-gcp.architecture.json) — the
-same flow with GCP icons. Each ships with its input IR and the converted board plan;
+[GCP](examples/ecommerce-checkout-gcp.architecture.json) and
+[Azure](examples/ecommerce-checkout-azure.architecture.json) twins — the identical
+flow in three icon sets. Each ships with its input IR and the converted board plan;
 walkthrough in [examples/README.md](examples/README.md).
 
-![The GCP e-commerce checkout example rendered on a Miro board](docs/demo-ecommerce-gcp.png)
+The same checkout, rendered on GCP and Azure:
+
+![GCP e-commerce checkout on a Miro board](docs/demo-ecommerce-gcp.png)
+![Azure e-commerce checkout on a Miro board](docs/demo-ecommerce-azure.png)
 
 ```bash
-node bin/ir-to-miro.mjs examples/ecommerce-checkout-gcp.architecture.json --iconset gcp
+node bin/ir-to-miro.mjs examples/ecommerce-checkout-gcp.architecture.json   --iconset gcp
+node bin/ir-to-miro.mjs examples/ecommerce-checkout-azure.architecture.json --iconset azure
 ```
 
 ## License

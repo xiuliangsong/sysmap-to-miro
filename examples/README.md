@@ -71,6 +71,13 @@ Pub/Sub, Cloud Functions, Cloud Storage — to show the identical IR shape rende
 in a different provider's icon set. Third parties (Stripe, SendGrid, the partner
 WMS) fall back to the neutral glyph. Render with `--iconset gcp`.
 
+## 4. `ecommerce-checkout-azure.architecture.json`
+
+The same checkout again on Azure — API Management, Container Apps, Cosmos DB,
+Service Bus, Event Grid, Functions, Blob Storage, Entra ID. Together with #2 and #3
+it's one IR shape shown in all three provider icon sets. Render with
+`--iconset azure`.
+
 ## Run one
 
 ```bash

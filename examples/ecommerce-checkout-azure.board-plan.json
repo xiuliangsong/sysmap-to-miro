@@ -1,0 +1,293 @@
+{
+  "title": "E-commerce Checkout (Azure)",
+  "subtitle": "the same checkout flow on Azure — Container Apps, Cosmos DB, Service Bus, Functions",
+  "iconset": "azure",
+  "frames": [
+    {
+      "id": "frame_0",
+      "label": "Checkout",
+      "kind": "region",
+      "x": 214,
+      "y": 250,
+      "w": 462,
+      "h": 356,
+      "wraps": [
+        "api",
+        "cognito",
+        "orders",
+        "ordertbl"
+      ]
+    },
+    {
+      "id": "frame_1",
+      "label": "Fulfilment",
+      "kind": "region",
+      "x": 714,
+      "y": 250,
+      "w": 462,
+      "h": 356,
+      "wraps": [
+        "orderq",
+        "bus",
+        "fulfil"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "shopper",
+      "label": "Shopper",
+      "sublabel": "web + mobile",
+      "type": "external",
+      "tag": "",
+      "x": 40,
+      "y": 320,
+      "w": 150,
+      "h": 60,
+      "icon": "identity/users.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/identity/users.png"
+    },
+    {
+      "id": "web",
+      "label": "Storefront",
+      "sublabel": "Blob Storage + CDN",
+      "type": "database",
+      "tag": "",
+      "x": 260,
+      "y": 140,
+      "w": 150,
+      "h": 60,
+      "icon": "storage/blob-storage.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/storage/blob-storage.png"
+    },
+    {
+      "id": "api",
+      "label": "Checkout API",
+      "sublabel": "API Management",
+      "type": "cloud",
+      "tag": "",
+      "x": 260,
+      "y": 320,
+      "w": 150,
+      "h": 60,
+      "icon": "integration/api-management.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/integration/api-management.png"
+    },
+    {
+      "id": "cognito",
+      "label": "Customer identity",
+      "sublabel": "Entra ID",
+      "type": "security",
+      "tag": "",
+      "x": 260,
+      "y": 500,
+      "w": 150,
+      "h": 60,
+      "icon": "identity/azure-active-directory.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/identity/azure-active-directory.png"
+    },
+    {
+      "id": "orders",
+      "label": "Order service",
+      "sublabel": "Container Apps",
+      "type": "backend",
+      "tag": "place · price · reserve",
+      "x": 480,
+      "y": 320,
+      "w": 150,
+      "h": 60,
+      "icon": "compute/container-apps.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/compute/container-apps.png"
+    },
+    {
+      "id": "ordertbl",
+      "label": "Orders table",
+      "sublabel": "Cosmos DB",
+      "type": "database",
+      "tag": "",
+      "x": 480,
+      "y": 500,
+      "w": 150,
+      "h": 60,
+      "icon": "database/cosmos-db.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/database/cosmos-db.png"
+    },
+    {
+      "id": "payment",
+      "label": "Payments",
+      "sublabel": "Stripe gateway",
+      "type": "external",
+      "tag": "",
+      "x": 480,
+      "y": 140,
+      "w": 150,
+      "h": 60,
+      "icon": "identity/users.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/identity/users.png"
+    },
+    {
+      "id": "bus",
+      "label": "Domain events",
+      "sublabel": "Event Grid",
+      "type": "messagebus",
+      "tag": "",
+      "x": 760,
+      "y": 320,
+      "w": 150,
+      "h": 60,
+      "icon": "integration/event-grid-topics.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/integration/event-grid-topics.png"
+    },
+    {
+      "id": "orderq",
+      "label": "Order queue",
+      "sublabel": "Service Bus",
+      "type": "messagebus",
+      "tag": "",
+      "x": 760,
+      "y": 500,
+      "w": 150,
+      "h": 60,
+      "icon": "integration/service-bus.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/integration/service-bus.png"
+    },
+    {
+      "id": "fulfil",
+      "label": "Fulfilment worker",
+      "sublabel": "Functions",
+      "type": "backend",
+      "tag": "",
+      "x": 980,
+      "y": 500,
+      "w": 150,
+      "h": 60,
+      "icon": "compute/function-apps.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/compute/function-apps.png"
+    },
+    {
+      "id": "warehouse",
+      "label": "Warehouse",
+      "sublabel": "partner WMS",
+      "type": "external",
+      "tag": "",
+      "x": 1240,
+      "y": 320,
+      "w": 150,
+      "h": 60,
+      "icon": "identity/users.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/identity/users.png"
+    },
+    {
+      "id": "email",
+      "label": "Notifier",
+      "sublabel": "Functions",
+      "type": "backend",
+      "tag": "",
+      "x": 760,
+      "y": 140,
+      "w": 150,
+      "h": 60,
+      "icon": "compute/function-apps.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/compute/function-apps.png"
+    },
+    {
+      "id": "mail",
+      "label": "Email",
+      "sublabel": "SendGrid",
+      "type": "external",
+      "tag": "",
+      "x": 980,
+      "y": 140,
+      "w": 150,
+      "h": 60,
+      "icon": "identity/users.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/identity/users.png"
+    }
+  ],
+  "connectors": [
+    {
+      "from": "shopper",
+      "to": "web",
+      "label": "browse",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "web",
+      "to": "api",
+      "label": "checkout",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "api",
+      "to": "cognito",
+      "label": "sign-in",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "api",
+      "to": "orders",
+      "label": "place order",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "orders",
+      "to": "ordertbl",
+      "label": "write order",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "orders",
+      "to": "payment",
+      "label": "charge card",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "orders",
+      "to": "orderq",
+      "label": "OrderPlaced",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "orderq",
+      "to": "fulfil",
+      "label": "consume",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "fulfil",
+      "to": "bus",
+      "label": "OrderFulfilled",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "bus",
+      "to": "warehouse",
+      "label": "dispatch",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "bus",
+      "to": "email",
+      "label": "notify",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "email",
+      "to": "mail",
+      "label": "send",
+      "style": "solid",
+      "emphasis": true
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "E-commerce Checkout (Azure)",
+    "subtitle": "the same checkout flow on Azure — Container Apps, Cosmos DB, Service Bus, Functions",
+    "output": "ecommerce-checkout-azure.html",
+    "viewBox": [1520, 760]
+  },
+  "_doc": "Azure-flavored twin of ecommerce-checkout.architecture.json — same shape, Azure services. Run: node bin/ir-to-miro.mjs examples/ecommerce-checkout-azure.architecture.json --iconset azure",
+  "components": [
+    { "id": "shopper",   "type": "external",   "label": "Shopper",           "sublabel": "web + mobile",        "pos": [40, 320],   "size": [150, 60] },
+    { "id": "web",       "type": "database",   "label": "Storefront",        "sublabel": "Blob Storage + CDN",  "pos": [260, 140],  "size": [150, 60] },
+    { "id": "api",       "type": "cloud",      "label": "Checkout API",      "sublabel": "API Management",      "pos": [260, 320],  "size": [150, 60] },
+    { "id": "cognito",   "type": "security",   "label": "Customer identity", "sublabel": "Entra ID",            "pos": [260, 500],  "size": [150, 60] },
+    { "id": "orders",    "type": "backend",    "label": "Order service",     "sublabel": "Container Apps",      "pos": [480, 320],  "size": [150, 60], "tag": "place · price · reserve" },
+    { "id": "ordertbl",  "type": "database",   "label": "Orders table",      "sublabel": "Cosmos DB",           "pos": [480, 500],  "size": [150, 60] },
+    { "id": "payment",   "type": "external",   "label": "Payments",          "sublabel": "Stripe gateway",      "pos": [480, 140],  "size": [150, 60] },
+    { "id": "bus",       "type": "messagebus", "label": "Domain events",     "sublabel": "Event Grid",          "pos": [760, 320],  "size": [150, 60] },
+    { "id": "orderq",    "type": "messagebus", "label": "Order queue",       "sublabel": "Service Bus",         "pos": [760, 500],  "size": [150, 60] },
+    { "id": "fulfil",    "type": "backend",    "label": "Fulfilment worker", "sublabel": "Functions",           "pos": [980, 500],  "size": [150, 60] },
+    { "id": "warehouse", "type": "external",   "label": "Warehouse",         "sublabel": "partner WMS",         "pos": [1240, 320], "size": [150, 60] },
+    { "id": "email",     "type": "backend",    "label": "Notifier",          "sublabel": "Functions",           "pos": [760, 140],  "size": [150, 60] },
+    { "id": "mail",      "type": "external",   "label": "Email",             "sublabel": "SendGrid",            "pos": [980, 140],  "size": [150, 60] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Checkout",   "wraps": ["api", "cognito", "orders", "ordertbl"] },
+    { "kind": "region", "label": "Fulfilment", "wraps": ["orderq", "bus", "fulfil"] }
+  ],
+  "connections": [
+    { "from": "shopper", "to": "web",       "label": "browse",         "variant": "emphasis" },
+    { "from": "web",     "to": "api",       "label": "checkout",       "variant": "emphasis" },
+    { "from": "api",     "to": "cognito",   "label": "sign-in",        "variant": "dashed" },
+    { "from": "api",     "to": "orders",    "label": "place order",    "variant": "emphasis" },
+    { "from": "orders",  "to": "ordertbl",  "label": "write order",    "variant": "emphasis" },
+    { "from": "orders",  "to": "payment",   "label": "charge card",    "variant": "emphasis" },
+    { "from": "orders",  "to": "orderq",    "label": "OrderPlaced",    "variant": "emphasis" },
+    { "from": "orderq",  "to": "fulfil",    "label": "consume",        "variant": "emphasis" },
+    { "from": "fulfil",  "to": "bus",       "label": "OrderFulfilled", "variant": "dashed" },
+    { "from": "bus",     "to": "warehouse", "label": "dispatch",       "variant": "dashed" },
+    { "from": "bus",     "to": "email",     "label": "notify",         "variant": "dashed" },
+    { "from": "email",   "to": "mail",      "label": "send",           "variant": "emphasis" }
+  ]
+}
