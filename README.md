@@ -19,6 +19,13 @@ IR into native Miro objects you can actually edit.
 npx skills add songstack/sysmap-to-miro
 ```
 
+…or as a Claude Code plugin:
+
+```
+/plugin marketplace add songstack/sysmap-to-miro
+/plugin install sysmap-to-miro@songstack-plugins
+```
+
 Then restart your agent.
 
 ## Requirements

@@ -1,0 +1,11 @@
+{
+  "name": "sysmap-to-miro",
+  "displayName": "Sysmap to Miro",
+  "description": "Turn a codebase or system map into editable Miro objects — AWS/GCP/Azure icons, connectors, titled white zones. Built on archify.",
+  "version": "0.1.0",
+  "author": { "name": "xlsong" },
+  "homepage": "https://github.com/songstack/sysmap-to-miro",
+  "repository": "https://github.com/songstack/sysmap-to-miro",
+  "license": "MIT",
+  "keywords": ["architecture-diagram", "miro", "mcp", "aws", "gcp", "azure", "diagram"]
+}

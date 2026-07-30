@@ -1,0 +1,25 @@
+{
+  "name": "songstack-plugins",
+  "owner": {
+    "name": "songstack",
+    "url": "https://github.com/songstack"
+  },
+  "metadata": {
+    "description": "songstack's Claude Code plugins",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "sysmap-to-miro",
+      "source": ".",
+      "description": "Turn a codebase or system map into editable Miro objects — AWS/GCP/Azure icons, connectors, titled white zones. Built on archify.",
+      "version": "0.1.0",
+      "author": { "name": "xlsong" },
+      "license": "MIT",
+      "homepage": "https://github.com/songstack/sysmap-to-miro",
+      "repository": "https://github.com/songstack/sysmap-to-miro",
+      "category": "visualization",
+      "keywords": ["architecture-diagram", "miro", "mcp", "aws", "gcp", "azure", "diagram"]
+    }
+  ]
+}
