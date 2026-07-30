@@ -9,10 +9,14 @@ materializes the *structure*: archify builds and validates a typed system map
 (components, connections, boundaries, with geometry), and this skill converts that
 IR into native Miro objects you can actually edit.
 
+![A Miro board produced by sysmap-to-miro: a serverless URL shortener with AWS icons, connectors, and titled white zones](docs/demo.png)
+
+<sub>The `url-shortener` example, materialized on a Miro board — AWS icons, labelled connectors, and boundaries as titled zones. Everything is a real, editable Miro object.</sub>
+
 ## Install
 
 ```bash
-npx skills add <owner>/sysmap-to-miro
+npx skills add xiuliangsong/sysmap-to-miro
 ```
 
 Then restart your agent.

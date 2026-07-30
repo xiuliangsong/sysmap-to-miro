@@ -5,22 +5,22 @@
     "title": "Serverless URL Shortener",
     "subtitle": "create + redirect on API Gateway / Lambda / DynamoDB, with a click-analytics pipeline",
     "output": "url-shortener.html",
-    "viewBox": [1340, 720]
+    "viewBox": [1520, 880]
   },
   "_doc": "Demo system map for sysmap-to-miro. Everything here is invented. It shows the two things the skill leans on: (1) service-accurate icons inferred from each node's label/sublabel (e.g. 'DynamoDB', 'SQS queue', 'Firehose', 'Kinesis'), and (2) boundaries that become titled white zones on the Miro board. Run: node bin/ir-to-miro.mjs examples/url-shortener.architecture.json --iconset aws",
   "components": [
-    { "id": "client",   "type": "external",   "label": "API client",        "sublabel": "browser · CLI · SDK",   "pos": [40, 280],  "size": [150, 60] },
-    { "id": "cognito",  "type": "security",   "label": "User pool",          "sublabel": "Cognito",               "pos": [250, 120], "size": [150, 60] },
-    { "id": "api",      "type": "cloud",      "label": "Public API",         "sublabel": "API Gateway + WAF",     "pos": [250, 280], "size": [150, 60], "tag": "POST /links · GET /{code}" },
-    { "id": "create",   "type": "backend",    "label": "Create-link fn",     "sublabel": "Lambda",                "pos": [470, 200], "size": [150, 60] },
-    { "id": "resolve",  "type": "backend",    "label": "Redirect resolver",  "sublabel": "Lambda",                "pos": [470, 360], "size": [150, 60] },
-    { "id": "cache",    "type": "database",   "label": "Hot-link cache",     "sublabel": "DynamoDB DAX",          "pos": [690, 120], "size": [150, 60] },
-    { "id": "links",    "type": "database",   "label": "Links table",        "sublabel": "DynamoDB",              "pos": [690, 280], "size": [150, 60] },
-    { "id": "notify",   "type": "cloud",      "label": "Quota alerts",       "sublabel": "SES email",             "pos": [470, 520], "size": [150, 60] },
-    { "id": "clickq",   "type": "messagebus", "label": "Click events",       "sublabel": "SQS queue",             "pos": [690, 440], "size": [150, 60] },
-    { "id": "agg",      "type": "backend",    "label": "Click aggregator",   "sublabel": "Lambda",                "pos": [910, 440], "size": [150, 60] },
-    { "id": "stream",   "type": "messagebus", "label": "Delivery stream",    "sublabel": "Kinesis Firehose",      "pos": [1130, 440], "size": [150, 60] },
-    { "id": "lake",     "type": "database",   "label": "Analytics data",     "sublabel": "S3 bucket",             "pos": [1130, 580], "size": [150, 60] }
+    { "id": "client",   "type": "external",   "label": "API client",        "sublabel": "browser · CLI · SDK",   "pos": [40, 300],   "size": [150, 60] },
+    { "id": "cognito",  "type": "security",   "label": "User pool",          "sublabel": "Cognito",               "pos": [260, 120],  "size": [150, 60] },
+    { "id": "api",      "type": "cloud",      "label": "Public API",         "sublabel": "API Gateway + WAF",     "pos": [260, 300],  "size": [150, 60], "tag": "POST /links · GET /{code}" },
+    { "id": "create",   "type": "backend",    "label": "Create-link fn",     "sublabel": "Lambda",                "pos": [480, 220],  "size": [150, 60] },
+    { "id": "resolve",  "type": "backend",    "label": "Redirect resolver",  "sublabel": "Lambda",                "pos": [480, 380],  "size": [150, 60] },
+    { "id": "cache",    "type": "database",   "label": "Hot-link cache",     "sublabel": "DynamoDB DAX",          "pos": [840, 120],  "size": [150, 60] },
+    { "id": "links",    "type": "database",   "label": "Links table",        "sublabel": "DynamoDB",              "pos": [840, 300],  "size": [150, 60] },
+    { "id": "notify",   "type": "cloud",      "label": "Quota alerts",       "sublabel": "SES email",             "pos": [480, 560],  "size": [150, 60] },
+    { "id": "clickq",   "type": "messagebus", "label": "Click events",       "sublabel": "SQS queue",             "pos": [840, 580],  "size": [150, 60] },
+    { "id": "agg",      "type": "backend",    "label": "Click aggregator",   "sublabel": "Lambda",                "pos": [1060, 580], "size": [150, 60] },
+    { "id": "stream",   "type": "messagebus", "label": "Delivery stream",    "sublabel": "Kinesis Firehose",      "pos": [1280, 580], "size": [150, 60] },
+    { "id": "lake",     "type": "database",   "label": "Analytics data",     "sublabel": "S3 bucket",             "pos": [1280, 740], "size": [150, 60] }
   ],
   "boundaries": [
     { "kind": "region", "label": "Edge / API", "wraps": ["cognito", "api", "create", "resolve"] },
