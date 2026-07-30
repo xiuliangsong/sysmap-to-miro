@@ -52,7 +52,11 @@ function iconFor(label, sublabel, type) {
     if (hay.includes(key)) { path = services[key]; break; }
   }
   if (!path) path = fallback[type] || fallback.default || null;
-  return path ? { path, url: base + path } : null;
+  if (!path) return null;
+  // A mapping value may be a full URL (e.g. a cross-provider neutral glyph) or a
+  // path relative to the provider's _url_base.
+  const url = /^https?:\/\//.test(path) ? path : base + path;
+  return { path, url };
 }
 
 const byId = Object.fromEntries(comps.map((c) => [c.id, c]));

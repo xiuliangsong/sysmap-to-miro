@@ -1,5 +1,5 @@
 {
-  "_note": "Icon resolution. PRIMARY: infer the real service from each node's label/sublabel (e.g. 'S3' -> s3, 'DynamoDB' -> dynamodb, 'EventBridge' -> eventbridge, 'SNS' -> sns, 'Lambda' -> lambda, 'Fargate'/'ECS' -> fargate). FALLBACK: this coarse type->path map, since archify types can't tell S3 from DynamoDB. Final URL = provider._url_base + path. AWS paths verified against mingrammer/diagrams master; confirm gcp/azure filenames against that repo before relying on them.",
+  "_note": "Icon resolution. PRIMARY: infer the real service from each node's label/sublabel (e.g. 'S3' -> s3, 'Firestore' -> firestore, 'Cosmos DB' -> cosmos-db). FALLBACK: the coarse type->path map, since archify types can't tell one store from another. Final URL = provider._url_base + path, unless the value is already a full http(s) URL (used for cross-provider neutral glyphs). All paths verified against mingrammer/diagrams master (aws/gcp use hyphenated multi-word names; azure too). Keys are matched as lowercase substrings of '<label> <sublabel>', first match wins, so more specific keys are listed first.",
   "aws": {
     "_url_base": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/",
     "services": {
@@ -32,14 +32,102 @@
   },
   "gcp": {
     "_url_base": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/gcp/",
-    "_verify_paths": true
+    "services": {
+      "api gateway": "api/api-gateway.png",
+      "apigee": "api/apigee.png",
+      "endpoints": "api/endpoints.png",
+      "cloud run": "compute/run.png",
+      "cloud functions": "compute/functions.png",
+      "functions": "compute/functions.png",
+      "kubernetes engine": "compute/kubernetes-engine.png",
+      "gke": "compute/kubernetes-engine.png",
+      "kubernetes": "compute/kubernetes-engine.png",
+      "compute engine": "compute/compute-engine.png",
+      "app engine": "compute/app-engine.png",
+      "firestore": "database/firestore.png",
+      "cloud sql": "database/sql.png",
+      "bigtable": "database/bigtable.png",
+      "spanner": "database/spanner.png",
+      "memorystore": "database/memorystore.png",
+      "cloud storage": "storage/storage.png",
+      "gcs": "storage/storage.png",
+      "bigquery": "analytics/bigquery.png",
+      "pub/sub": "analytics/pubsub.png",
+      "pubsub": "analytics/pubsub.png",
+      "dataflow": "analytics/dataflow.png",
+      "cloud dns": "network/dns.png",
+      "dns": "network/dns.png",
+      "cdn": "network/cdn.png",
+      "load balan": "network/load-balancing.png",
+      "kms": "security/key-management-service.png",
+      "key management": "security/key-management-service.png",
+      "iam": "security/iam.png"
+    },
+    "type_fallback": {
+      "backend": "compute/run.png",
+      "database": "database/sql.png",
+      "cloud": "compute/run.png",
+      "messagebus": "analytics/pubsub.png",
+      "security": "security/iam.png",
+      "frontend": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/onprem/client/users.png",
+      "external": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/onprem/client/users.png",
+      "default": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/onprem/client/users.png"
+    }
   },
   "azure": {
     "_url_base": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/",
-    "_verify_paths": true
+    "services": {
+      "function app": "compute/function-apps.png",
+      "functions": "compute/function-apps.png",
+      "container instance": "compute/container-instances.png",
+      "container app": "compute/container-apps.png",
+      "aks": "compute/kubernetes-services.png",
+      "kubernetes": "compute/kubernetes-services.png",
+      "app service": "web/app-services.png",
+      "virtual machine": "compute/virtual-machine.png",
+      "vm": "compute/virtual-machine.png",
+      "cosmos": "database/cosmos-db.png",
+      "sql": "database/sql-databases.png",
+      "redis": "database/cache-for-redis.png",
+      "blob": "storage/blob-storage.png",
+      "queue storage": "storage/queues-storage.png",
+      "storage account": "storage/storage-accounts.png",
+      "storage": "storage/storage-accounts.png",
+      "service bus": "integration/service-bus.png",
+      "api management": "integration/api-management.png",
+      "event grid": "integration/event-grid-topics.png",
+      "logic app": "integration/logic-apps.png",
+      "api connection": "integration/api-connections.png",
+      "event hub": "analytics/event-hubs.png",
+      "data factor": "analytics/data-factories.png",
+      "stream analytics": "analytics/stream-analytics-jobs.png",
+      "databricks": "analytics/azure-databricks.png",
+      "synapse": "analytics/synapse-analytics.png",
+      "active directory": "identity/azure-active-directory.png",
+      "entra": "identity/azure-active-directory.png",
+      "aad": "identity/azure-active-directory.png",
+      "application gateway": "network/application-gateway.png",
+      "front door": "network/front-doors.png",
+      "load balan": "network/load-balancers.png",
+      "dns": "network/dns-zones.png",
+      "cdn": "network/cdn-profiles.png",
+      "users": "identity/users.png"
+    },
+    "type_fallback": {
+      "backend": "compute/function-apps.png",
+      "database": "database/sql-databases.png",
+      "cloud": "web/app-services.png",
+      "messagebus": "integration/service-bus.png",
+      "security": "identity/azure-active-directory.png",
+      "frontend": "identity/users.png",
+      "external": "identity/users.png",
+      "default": "identity/users.png"
+    }
   },
   "custom": {
     "_url_base": "",
-    "_note": "Point _url_base at your own icon host and add service/type entries."
+    "_note": "Point _url_base at your own icon host and add service/type entries. A value may also be a full http(s) URL, which is used as-is.",
+    "services": {},
+    "type_fallback": {}
   }
 }
