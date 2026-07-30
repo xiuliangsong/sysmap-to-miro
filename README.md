@@ -58,6 +58,17 @@ provider icons).
 The type→icon mapping is in [`icons/map.json`](icons/map.json); swap `--iconset`
 to re-render the same map in any set.
 
+## Icon sets
+
+Pass `--iconset aws | gcp | azure | custom | none`. The same system map renders in
+whichever provider's icons you choose; `none` gives plain, fully-editable Miro shapes.
+
+![The same five services — API, compute, database, messaging, storage — shown in AWS, GCP, and Azure icons](docs/icon-sets.png)
+
+Icons resolve from each node's label/sublabel (verified against
+[mingrammer/diagrams](https://github.com/mingrammer/diagrams)); unknown or
+third-party nodes fall back to a neutral glyph.
+
 ## How it works
 
 1. **archify** → validated `*.architecture.json` (components/connections/boundaries + geometry).
