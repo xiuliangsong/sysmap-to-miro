@@ -1,0 +1,293 @@
+{
+  "title": "E-commerce Checkout (GCP)",
+  "subtitle": "the same checkout flow on Google Cloud — Cloud Run, Firestore, Pub/Sub, Cloud Functions",
+  "iconset": "gcp",
+  "frames": [
+    {
+      "id": "frame_0",
+      "label": "Checkout",
+      "kind": "region",
+      "x": 214,
+      "y": 250,
+      "w": 462,
+      "h": 356,
+      "wraps": [
+        "api",
+        "cognito",
+        "orders",
+        "ordertbl"
+      ]
+    },
+    {
+      "id": "frame_1",
+      "label": "Fulfilment",
+      "kind": "region",
+      "x": 714,
+      "y": 250,
+      "w": 462,
+      "h": 356,
+      "wraps": [
+        "orderq",
+        "bus",
+        "fulfil"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "shopper",
+      "label": "Shopper",
+      "sublabel": "web + mobile",
+      "type": "external",
+      "tag": "",
+      "x": 40,
+      "y": 320,
+      "w": 150,
+      "h": 60,
+      "icon": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/onprem/client/users.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/onprem/client/users.png"
+    },
+    {
+      "id": "web",
+      "label": "Storefront",
+      "sublabel": "Cloud Storage + CDN",
+      "type": "database",
+      "tag": "",
+      "x": 260,
+      "y": 140,
+      "w": 150,
+      "h": 60,
+      "icon": "storage/storage.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/gcp/storage/storage.png"
+    },
+    {
+      "id": "api",
+      "label": "Checkout API",
+      "sublabel": "API Gateway",
+      "type": "cloud",
+      "tag": "",
+      "x": 260,
+      "y": 320,
+      "w": 150,
+      "h": 60,
+      "icon": "api/api-gateway.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/gcp/api/api-gateway.png"
+    },
+    {
+      "id": "cognito",
+      "label": "Customer identity",
+      "sublabel": "Identity Platform · IAM",
+      "type": "security",
+      "tag": "",
+      "x": 260,
+      "y": 500,
+      "w": 150,
+      "h": 60,
+      "icon": "security/iam.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/gcp/security/iam.png"
+    },
+    {
+      "id": "orders",
+      "label": "Order service",
+      "sublabel": "Cloud Run",
+      "type": "backend",
+      "tag": "place · price · reserve",
+      "x": 480,
+      "y": 320,
+      "w": 150,
+      "h": 60,
+      "icon": "compute/run.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/gcp/compute/run.png"
+    },
+    {
+      "id": "ordertbl",
+      "label": "Orders table",
+      "sublabel": "Firestore",
+      "type": "database",
+      "tag": "",
+      "x": 480,
+      "y": 500,
+      "w": 150,
+      "h": 60,
+      "icon": "database/firestore.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/gcp/database/firestore.png"
+    },
+    {
+      "id": "payment",
+      "label": "Payments",
+      "sublabel": "Stripe gateway",
+      "type": "external",
+      "tag": "",
+      "x": 480,
+      "y": 140,
+      "w": 150,
+      "h": 60,
+      "icon": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/onprem/client/users.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/onprem/client/users.png"
+    },
+    {
+      "id": "bus",
+      "label": "Domain events",
+      "sublabel": "Pub/Sub",
+      "type": "messagebus",
+      "tag": "",
+      "x": 760,
+      "y": 320,
+      "w": 150,
+      "h": 60,
+      "icon": "analytics/pubsub.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/gcp/analytics/pubsub.png"
+    },
+    {
+      "id": "orderq",
+      "label": "Order queue",
+      "sublabel": "Pub/Sub",
+      "type": "messagebus",
+      "tag": "",
+      "x": 760,
+      "y": 500,
+      "w": 150,
+      "h": 60,
+      "icon": "analytics/pubsub.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/gcp/analytics/pubsub.png"
+    },
+    {
+      "id": "fulfil",
+      "label": "Fulfilment worker",
+      "sublabel": "Cloud Functions",
+      "type": "backend",
+      "tag": "",
+      "x": 980,
+      "y": 500,
+      "w": 150,
+      "h": 60,
+      "icon": "compute/functions.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/gcp/compute/functions.png"
+    },
+    {
+      "id": "warehouse",
+      "label": "Warehouse",
+      "sublabel": "partner WMS",
+      "type": "external",
+      "tag": "",
+      "x": 1240,
+      "y": 320,
+      "w": 150,
+      "h": 60,
+      "icon": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/onprem/client/users.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/onprem/client/users.png"
+    },
+    {
+      "id": "email",
+      "label": "Notifier",
+      "sublabel": "Cloud Functions",
+      "type": "backend",
+      "tag": "",
+      "x": 760,
+      "y": 140,
+      "w": 150,
+      "h": 60,
+      "icon": "compute/functions.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/gcp/compute/functions.png"
+    },
+    {
+      "id": "mail",
+      "label": "Email",
+      "sublabel": "SendGrid",
+      "type": "external",
+      "tag": "",
+      "x": 980,
+      "y": 140,
+      "w": 150,
+      "h": 60,
+      "icon": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/onprem/client/users.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/onprem/client/users.png"
+    }
+  ],
+  "connectors": [
+    {
+      "from": "shopper",
+      "to": "web",
+      "label": "browse",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "web",
+      "to": "api",
+      "label": "checkout",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "api",
+      "to": "cognito",
+      "label": "sign-in",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "api",
+      "to": "orders",
+      "label": "place order",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "orders",
+      "to": "ordertbl",
+      "label": "write order",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "orders",
+      "to": "payment",
+      "label": "charge card",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "orders",
+      "to": "orderq",
+      "label": "OrderPlaced",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "orderq",
+      "to": "fulfil",
+      "label": "consume",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "fulfil",
+      "to": "bus",
+      "label": "OrderFulfilled",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "bus",
+      "to": "warehouse",
+      "label": "dispatch",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "bus",
+      "to": "email",
+      "label": "notify",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "email",
+      "to": "mail",
+      "label": "send",
+      "style": "solid",
+      "emphasis": true
+    }
+  ]
+}

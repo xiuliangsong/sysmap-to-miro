@@ -79,14 +79,18 @@ archify draws no icons itself — the icon sets live in this skill's render step
 
 ## Examples
 
-Two worked, invented system maps in [`examples/`](examples/) —
-[`url-shortener`](examples/url-shortener.architecture.json) and
-[`ecommerce-checkout`](examples/ecommerce-checkout.architecture.json) — each with
-its input IR and the board plan the converter produces. Walkthrough in
-[examples/README.md](examples/README.md).
+Three worked, invented system maps in [`examples/`](examples/):
+[`url-shortener`](examples/url-shortener.architecture.json) (AWS),
+[`ecommerce-checkout`](examples/ecommerce-checkout.architecture.json) (AWS), and its
+Google Cloud twin
+[`ecommerce-checkout-gcp`](examples/ecommerce-checkout-gcp.architecture.json) — the
+same flow with GCP icons. Each ships with its input IR and the converted board plan;
+walkthrough in [examples/README.md](examples/README.md).
+
+![The GCP e-commerce checkout example rendered on a Miro board](docs/demo-ecommerce-gcp.png)
 
 ```bash
-node bin/ir-to-miro.mjs examples/url-shortener.architecture.json --iconset aws
+node bin/ir-to-miro.mjs examples/ecommerce-checkout-gcp.architecture.json --iconset gcp
 ```
 
 ## License

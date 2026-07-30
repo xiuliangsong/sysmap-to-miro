@@ -64,6 +64,13 @@ SES). Two boundaries: *Checkout*, *Fulfilment*. External systems (Stripe, the
 partner WMS) have no AWS icon and fall back to the neutral `users` glyph — which is
 the intended behaviour for third parties.
 
+## 3. `ecommerce-checkout-gcp.architecture.json`
+
+The same checkout flow as #2, retargeted to Google Cloud — Cloud Run, Firestore,
+Pub/Sub, Cloud Functions, Cloud Storage — to show the identical IR shape rendering
+in a different provider's icon set. Third parties (Stripe, SendGrid, the partner
+WMS) fall back to the neutral glyph. Render with `--iconset gcp`.
+
 ## Run one
 
 ```bash
