@@ -1,0 +1,294 @@
+{
+  "title": "Serverless URL Shortener",
+  "subtitle": "create + redirect on API Gateway / Lambda / DynamoDB, with a click-analytics pipeline",
+  "iconset": "aws",
+  "frames": [
+    {
+      "id": "frame_0",
+      "label": "Edge / API",
+      "kind": "region",
+      "x": 204,
+      "y": 50,
+      "w": 462,
+      "h": 416,
+      "wraps": [
+        "cognito",
+        "api",
+        "create",
+        "resolve"
+      ]
+    },
+    {
+      "id": "frame_1",
+      "label": "Storage",
+      "kind": "region",
+      "x": 644,
+      "y": 50,
+      "w": 242,
+      "h": 336,
+      "wraps": [
+        "cache",
+        "links"
+      ]
+    },
+    {
+      "id": "frame_2",
+      "label": "Click analytics",
+      "kind": "region",
+      "x": 644,
+      "y": 370,
+      "w": 682,
+      "h": 316,
+      "wraps": [
+        "clickq",
+        "agg",
+        "stream",
+        "lake"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "client",
+      "label": "API client",
+      "sublabel": "browser · CLI · SDK",
+      "type": "external",
+      "tag": "",
+      "x": 40,
+      "y": 280,
+      "w": 150,
+      "h": 60,
+      "icon": "general/users.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/general/users.png"
+    },
+    {
+      "id": "cognito",
+      "label": "User pool",
+      "sublabel": "Cognito",
+      "type": "security",
+      "tag": "",
+      "x": 250,
+      "y": 120,
+      "w": 150,
+      "h": 60,
+      "icon": "security/cognito.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/security/cognito.png"
+    },
+    {
+      "id": "api",
+      "label": "Public API",
+      "sublabel": "API Gateway + WAF",
+      "type": "cloud",
+      "tag": "POST /links · GET /{code}",
+      "x": 250,
+      "y": 280,
+      "w": 150,
+      "h": 60,
+      "icon": "network/api-gateway.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/network/api-gateway.png"
+    },
+    {
+      "id": "create",
+      "label": "Create-link fn",
+      "sublabel": "Lambda",
+      "type": "backend",
+      "tag": "",
+      "x": 470,
+      "y": 200,
+      "w": 150,
+      "h": 60,
+      "icon": "compute/lambda.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/compute/lambda.png"
+    },
+    {
+      "id": "resolve",
+      "label": "Redirect resolver",
+      "sublabel": "Lambda",
+      "type": "backend",
+      "tag": "",
+      "x": 470,
+      "y": 360,
+      "w": 150,
+      "h": 60,
+      "icon": "compute/lambda.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/compute/lambda.png"
+    },
+    {
+      "id": "cache",
+      "label": "Hot-link cache",
+      "sublabel": "DynamoDB DAX",
+      "type": "database",
+      "tag": "",
+      "x": 690,
+      "y": 120,
+      "w": 150,
+      "h": 60,
+      "icon": "database/dynamodb.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/database/dynamodb.png"
+    },
+    {
+      "id": "links",
+      "label": "Links table",
+      "sublabel": "DynamoDB",
+      "type": "database",
+      "tag": "",
+      "x": 690,
+      "y": 280,
+      "w": 150,
+      "h": 60,
+      "icon": "database/dynamodb.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/database/dynamodb.png"
+    },
+    {
+      "id": "notify",
+      "label": "Quota alerts",
+      "sublabel": "SES email",
+      "type": "cloud",
+      "tag": "",
+      "x": 470,
+      "y": 520,
+      "w": 150,
+      "h": 60,
+      "icon": "engagement/simple-email-service-ses.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/engagement/simple-email-service-ses.png"
+    },
+    {
+      "id": "clickq",
+      "label": "Click events",
+      "sublabel": "SQS queue",
+      "type": "messagebus",
+      "tag": "",
+      "x": 690,
+      "y": 440,
+      "w": 150,
+      "h": 60,
+      "icon": "integration/simple-queue-service-sqs.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/integration/simple-queue-service-sqs.png"
+    },
+    {
+      "id": "agg",
+      "label": "Click aggregator",
+      "sublabel": "Lambda",
+      "type": "backend",
+      "tag": "",
+      "x": 910,
+      "y": 440,
+      "w": 150,
+      "h": 60,
+      "icon": "compute/lambda.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/compute/lambda.png"
+    },
+    {
+      "id": "stream",
+      "label": "Delivery stream",
+      "sublabel": "Kinesis Firehose",
+      "type": "messagebus",
+      "tag": "",
+      "x": 1130,
+      "y": 440,
+      "w": 150,
+      "h": 60,
+      "icon": "analytics/kinesis-data-firehose.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/analytics/kinesis-data-firehose.png"
+    },
+    {
+      "id": "lake",
+      "label": "Analytics data",
+      "sublabel": "S3 bucket",
+      "type": "database",
+      "tag": "",
+      "x": 1130,
+      "y": 580,
+      "w": 150,
+      "h": 60,
+      "icon": "storage/simple-storage-service-s3.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/storage/simple-storage-service-s3.png"
+    }
+  ],
+  "connectors": [
+    {
+      "from": "client",
+      "to": "api",
+      "label": "POST /links · GET /{code}",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "api",
+      "to": "cognito",
+      "label": "JWT authorizer",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "api",
+      "to": "create",
+      "label": "create",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "api",
+      "to": "resolve",
+      "label": "resolve",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "create",
+      "to": "links",
+      "label": "put item",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "resolve",
+      "to": "cache",
+      "label": "get (hot)",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "cache",
+      "to": "links",
+      "label": "read-through on miss",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "resolve",
+      "to": "clickq",
+      "label": "emit click",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "clickq",
+      "to": "agg",
+      "label": "batch",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "agg",
+      "to": "stream",
+      "label": "records",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "stream",
+      "to": "lake",
+      "label": "parquet",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "create",
+      "to": "notify",
+      "label": "quota near limit",
+      "style": "dashed",
+      "emphasis": false
+    }
+  ]
+}

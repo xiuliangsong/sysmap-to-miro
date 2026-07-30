@@ -1,0 +1,45 @@
+{
+  "_note": "Icon resolution. PRIMARY: infer the real service from each node's label/sublabel (e.g. 'S3' -> s3, 'DynamoDB' -> dynamodb, 'EventBridge' -> eventbridge, 'SNS' -> sns, 'Lambda' -> lambda, 'Fargate'/'ECS' -> fargate). FALLBACK: this coarse type->path map, since archify types can't tell S3 from DynamoDB. Final URL = provider._url_base + path. AWS paths verified against mingrammer/diagrams master; confirm gcp/azure filenames against that repo before relying on them.",
+  "aws": {
+    "_url_base": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/",
+    "services": {
+      "api gateway": "network/api-gateway.png",
+      "apigateway": "network/api-gateway.png",
+      "cognito": "security/cognito.png",
+      "lambda": "compute/lambda.png",
+      "fargate": "compute/fargate.png",
+      "ecs": "compute/fargate.png",
+      "dynamodb": "database/dynamodb.png",
+      "s3": "storage/simple-storage-service-s3.png",
+      "eventbridge": "integration/eventbridge.png",
+      "sns": "integration/simple-notification-service-sns.png",
+      "sqs": "integration/simple-queue-service-sqs.png",
+      "ses": "engagement/simple-email-service-ses.png",
+      "firehose": "analytics/kinesis-data-firehose.png",
+      "kinesis": "analytics/kinesis-data-streams.png",
+      "users": "general/users.png"
+    },
+    "type_fallback": {
+      "backend": "compute/lambda.png",
+      "database": "database/dynamodb.png",
+      "cloud": "compute/fargate.png",
+      "messagebus": "integration/simple-notification-service-sns.png",
+      "security": "security/cognito.png",
+      "frontend": "general/users.png",
+      "external": "general/users.png",
+      "default": "general/users.png"
+    }
+  },
+  "gcp": {
+    "_url_base": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/gcp/",
+    "_verify_paths": true
+  },
+  "azure": {
+    "_url_base": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/azure/",
+    "_verify_paths": true
+  },
+  "custom": {
+    "_url_base": "",
+    "_note": "Point _url_base at your own icon host and add service/type entries."
+  }
+}

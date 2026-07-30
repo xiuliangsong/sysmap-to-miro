@@ -1,0 +1,321 @@
+{
+  "title": "E-commerce Checkout",
+  "subtitle": "order placement → async fulfilment → notifications, event-driven on EventBridge",
+  "iconset": "aws",
+  "frames": [
+    {
+      "id": "frame_0",
+      "label": "Checkout",
+      "kind": "region",
+      "x": 204,
+      "y": 210,
+      "w": 682,
+      "h": 336,
+      "wraps": [
+        "api",
+        "cognito",
+        "orders",
+        "ordertbl"
+      ]
+    },
+    {
+      "id": "frame_1",
+      "label": "Fulfilment",
+      "kind": "region",
+      "x": 644,
+      "y": 210,
+      "w": 702,
+      "h": 336,
+      "wraps": [
+        "orderq",
+        "fulfil",
+        "bus",
+        "topic"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "shopper",
+      "label": "Shopper",
+      "sublabel": "web + mobile",
+      "type": "external",
+      "tag": "",
+      "x": 40,
+      "y": 280,
+      "w": 150,
+      "h": 60,
+      "icon": "general/users.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/general/users.png"
+    },
+    {
+      "id": "web",
+      "label": "Storefront",
+      "sublabel": "S3 + CloudFront",
+      "type": "database",
+      "tag": "",
+      "x": 250,
+      "y": 120,
+      "w": 150,
+      "h": 60,
+      "icon": "storage/simple-storage-service-s3.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/storage/simple-storage-service-s3.png"
+    },
+    {
+      "id": "api",
+      "label": "Checkout API",
+      "sublabel": "API Gateway",
+      "type": "cloud",
+      "tag": "",
+      "x": 250,
+      "y": 280,
+      "w": 150,
+      "h": 60,
+      "icon": "network/api-gateway.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/network/api-gateway.png"
+    },
+    {
+      "id": "cognito",
+      "label": "Customer identity",
+      "sublabel": "Cognito",
+      "type": "security",
+      "tag": "",
+      "x": 250,
+      "y": 440,
+      "w": 150,
+      "h": 60,
+      "icon": "security/cognito.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/security/cognito.png"
+    },
+    {
+      "id": "orders",
+      "label": "Order service",
+      "sublabel": "Fargate (ECS)",
+      "type": "backend",
+      "tag": "place · price · reserve",
+      "x": 470,
+      "y": 280,
+      "w": 150,
+      "h": 60,
+      "icon": "compute/fargate.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/compute/fargate.png"
+    },
+    {
+      "id": "ordertbl",
+      "label": "Orders table",
+      "sublabel": "DynamoDB",
+      "type": "database",
+      "tag": "",
+      "x": 690,
+      "y": 280,
+      "w": 150,
+      "h": 60,
+      "icon": "database/dynamodb.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/database/dynamodb.png"
+    },
+    {
+      "id": "payment",
+      "label": "Payments",
+      "sublabel": "Stripe gateway",
+      "type": "external",
+      "tag": "",
+      "x": 470,
+      "y": 120,
+      "w": 150,
+      "h": 60,
+      "icon": "general/users.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/general/users.png"
+    },
+    {
+      "id": "bus",
+      "label": "Domain bus",
+      "sublabel": "EventBridge",
+      "type": "messagebus",
+      "tag": "",
+      "x": 910,
+      "y": 280,
+      "w": 150,
+      "h": 60,
+      "icon": "integration/eventbridge.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/integration/eventbridge.png"
+    },
+    {
+      "id": "orderq",
+      "label": "Order events",
+      "sublabel": "SQS FIFO",
+      "type": "messagebus",
+      "tag": "",
+      "x": 690,
+      "y": 440,
+      "w": 150,
+      "h": 60,
+      "icon": "integration/simple-queue-service-sqs.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/integration/simple-queue-service-sqs.png"
+    },
+    {
+      "id": "fulfil",
+      "label": "Fulfilment worker",
+      "sublabel": "Lambda",
+      "type": "backend",
+      "tag": "",
+      "x": 910,
+      "y": 440,
+      "w": 150,
+      "h": 60,
+      "icon": "compute/lambda.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/compute/lambda.png"
+    },
+    {
+      "id": "topic",
+      "label": "Dispatch fan-out",
+      "sublabel": "SNS topic",
+      "type": "messagebus",
+      "tag": "",
+      "x": 1150,
+      "y": 280,
+      "w": 150,
+      "h": 60,
+      "icon": "integration/simple-notification-service-sns.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/integration/simple-notification-service-sns.png"
+    },
+    {
+      "id": "warehouse",
+      "label": "Warehouse",
+      "sublabel": "partner WMS",
+      "type": "external",
+      "tag": "",
+      "x": 1150,
+      "y": 120,
+      "w": 150,
+      "h": 60,
+      "icon": "general/users.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/general/users.png"
+    },
+    {
+      "id": "email",
+      "label": "Notifier",
+      "sublabel": "Lambda",
+      "type": "backend",
+      "tag": "",
+      "x": 910,
+      "y": 120,
+      "w": 150,
+      "h": 60,
+      "icon": "compute/lambda.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/compute/lambda.png"
+    },
+    {
+      "id": "ses",
+      "label": "Transactional mail",
+      "sublabel": "SES",
+      "type": "cloud",
+      "tag": "",
+      "x": 1150,
+      "y": 560,
+      "w": 150,
+      "h": 60,
+      "icon": "engagement/simple-email-service-ses.png",
+      "icon_url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/engagement/simple-email-service-ses.png"
+    }
+  ],
+  "connectors": [
+    {
+      "from": "shopper",
+      "to": "web",
+      "label": "browse",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "web",
+      "to": "api",
+      "label": "checkout",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "api",
+      "to": "cognito",
+      "label": "sign-in",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "api",
+      "to": "orders",
+      "label": "place order",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "orders",
+      "to": "ordertbl",
+      "label": "write order",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "orders",
+      "to": "payment",
+      "label": "charge card",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "orders",
+      "to": "orderq",
+      "label": "OrderPlaced",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "orderq",
+      "to": "fulfil",
+      "label": "consume",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "fulfil",
+      "to": "bus",
+      "label": "OrderFulfilled",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "bus",
+      "to": "topic",
+      "label": "dispatch",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "topic",
+      "to": "warehouse",
+      "label": "pick + pack",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "bus",
+      "to": "email",
+      "label": "notify",
+      "style": "dashed",
+      "emphasis": false
+    },
+    {
+      "from": "email",
+      "to": "ses",
+      "label": "send",
+      "style": "solid",
+      "emphasis": true
+    },
+    {
+      "from": "ses",
+      "to": "shopper",
+      "label": "confirmation",
+      "style": "dashed",
+      "emphasis": false
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "sysmap-to-miro",
+  "version": "0.1.0",
+  "description": "Turn a codebase or system description into native, editable Miro objects — shapes, connectors, frames — with a selectable icon set (aws|gcp|azure|custom|none). Built on archify.",
+  "type": "module",
+  "bin": { "sysmap-to-miro": "./bin/ir-to-miro.mjs" },
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "keywords": ["miro", "architecture", "diagram", "system-map", "archify", "claude-skill", "aws", "gcp", "azure"]
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "E-commerce Checkout",
+    "subtitle": "order placement → async fulfilment → notifications, event-driven on EventBridge",
+    "output": "ecommerce-checkout.html",
+    "viewBox": [1360, 700]
+  },
+  "_doc": "Demo system map for sysmap-to-miro. Entirely invented. Highlights icon inference across a wider service mix (Fargate/ECS, EventBridge, SNS, SES, DynamoDB, S3) and external systems (a payment gateway and a partner warehouse) that fall back to the neutral 'users' icon. Run: node bin/ir-to-miro.mjs examples/ecommerce-checkout.architecture.json --iconset aws",
+  "components": [
+    { "id": "shopper",   "type": "external",   "label": "Shopper",            "sublabel": "web + mobile",         "pos": [40, 280],  "size": [150, 60] },
+    { "id": "web",       "type": "database",   "label": "Storefront",         "sublabel": "S3 + CloudFront",      "pos": [250, 120], "size": [150, 60] },
+    { "id": "api",       "type": "cloud",      "label": "Checkout API",       "sublabel": "API Gateway",          "pos": [250, 280], "size": [150, 60] },
+    { "id": "cognito",   "type": "security",   "label": "Customer identity",  "sublabel": "Cognito",              "pos": [250, 440], "size": [150, 60] },
+    { "id": "orders",    "type": "backend",    "label": "Order service",      "sublabel": "Fargate (ECS)",        "pos": [470, 280], "size": [150, 60], "tag": "place · price · reserve" },
+    { "id": "ordertbl",  "type": "database",   "label": "Orders table",       "sublabel": "DynamoDB",             "pos": [690, 280], "size": [150, 60] },
+    { "id": "payment",   "type": "external",   "label": "Payments",           "sublabel": "Stripe gateway",       "pos": [470, 120], "size": [150, 60] },
+    { "id": "bus",       "type": "messagebus", "label": "Domain bus",         "sublabel": "EventBridge",          "pos": [910, 280], "size": [150, 60] },
+    { "id": "orderq",    "type": "messagebus", "label": "Order events",       "sublabel": "SQS FIFO",             "pos": [690, 440], "size": [150, 60] },
+    { "id": "fulfil",    "type": "backend",    "label": "Fulfilment worker",  "sublabel": "Lambda",               "pos": [910, 440], "size": [150, 60] },
+    { "id": "topic",     "type": "messagebus", "label": "Dispatch fan-out",   "sublabel": "SNS topic",            "pos": [1150, 280], "size": [150, 60] },
+    { "id": "warehouse", "type": "external",   "label": "Warehouse",          "sublabel": "partner WMS",          "pos": [1150, 120], "size": [150, 60] },
+    { "id": "email",     "type": "backend",    "label": "Notifier",           "sublabel": "Lambda",               "pos": [910, 120], "size": [150, 60] },
+    { "id": "ses",       "type": "cloud",      "label": "Transactional mail", "sublabel": "SES",                  "pos": [1150, 560], "size": [150, 60] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Checkout",   "wraps": ["api", "cognito", "orders", "ordertbl"] },
+    { "kind": "region", "label": "Fulfilment", "wraps": ["orderq", "fulfil", "bus", "topic"] }
+  ],
+  "connections": [
+    { "from": "shopper", "to": "web",       "label": "browse",         "variant": "emphasis" },
+    { "from": "web",     "to": "api",       "label": "checkout",       "variant": "emphasis" },
+    { "from": "api",     "to": "cognito",   "label": "sign-in",        "variant": "dashed" },
+    { "from": "api",     "to": "orders",    "label": "place order",    "variant": "emphasis" },
+    { "from": "orders",  "to": "ordertbl",  "label": "write order",    "variant": "emphasis" },
+    { "from": "orders",  "to": "payment",   "label": "charge card",    "variant": "emphasis" },
+    { "from": "orders",  "to": "orderq",    "label": "OrderPlaced",    "variant": "emphasis" },
+    { "from": "orderq",  "to": "fulfil",    "label": "consume",        "variant": "emphasis" },
+    { "from": "fulfil",  "to": "bus",       "label": "OrderFulfilled", "variant": "dashed" },
+    { "from": "bus",     "to": "topic",     "label": "dispatch",       "variant": "dashed" },
+    { "from": "topic",   "to": "warehouse", "label": "pick + pack",    "variant": "dashed" },
+    { "from": "bus",     "to": "email",     "label": "notify",         "variant": "dashed" },
+    { "from": "email",   "to": "ses",       "label": "send",           "variant": "emphasis" },
+    { "from": "ses",     "to": "shopper",   "label": "confirmation",   "variant": "dashed" }
+  ]
+}
