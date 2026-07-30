@@ -16,7 +16,7 @@ IR into native Miro objects you can actually edit.
 ## Install
 
 ```bash
-npx skills add xiuliangsong/sysmap-to-miro
+npx skills add songstack/sysmap-to-miro
 ```
 
 Then restart your agent.

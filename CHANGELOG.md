@@ -19,7 +19,7 @@ the icon set with `--iconset`.
 
 ### Install
 ```bash
-npx skills add xiuliangsong/sysmap-to-miro
+npx skills add songstack/sysmap-to-miro
 ```
 
 ### Requires
