@@ -1,5 +1,7 @@
 # sysmap-to-miro
 
+[![Release](https://img.shields.io/github/v/release/songstack/sysmap-to-miro?color=1a7f37)](https://github.com/songstack/sysmap-to-miro/releases) [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE) [![Stars](https://img.shields.io/github/stars/songstack/sysmap-to-miro)](https://github.com/songstack/sysmap-to-miro/stargazers)
+
 **Turn a codebase or system description into editable Miro components — shapes,
 connectors, and frames you can move and edit, not a screenshot. Choose your icon
 set (AWS · GCP · Azure · custom). Built on [archify](https://github.com/tt-a1i/archify).**
